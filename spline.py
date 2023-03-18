@@ -1,12 +1,16 @@
 import numpy as np
+from numpy.random import rand
 import pandas as pd
 
 
 class Interpolator():
 
-    def __init__(self):
-        # reading input knots
-        knots = np.loadtxt('knots.txt')
+    def __init__(self, number_of_knots=0):
+        if not number_of_knots:
+            # reading input knots
+            knots = np.loadtxt('knots.txt')
+        else:
+            knots = rand(number_of_knots, 2)
 
         # sorting input knots by their x value (if necessary)
         sort_index = np.argsort(knots[:, 0])
