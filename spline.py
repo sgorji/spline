@@ -6,10 +6,15 @@ import pandas as pd
 class Interpolator():
 
     def __init__(self, number_of_knots=0):
-        if not number_of_knots:
-            # reading input knots
+
+        # reading input knots
+        try:
             knots = np.loadtxt('knots.txt')
-        else:
+        except:
+            # a default value for the number of knots
+            number_of_knots = 10
+
+        if number_of_knots:
             knots = rand(number_of_knots, 2)
 
         # sorting input knots by their x value (if necessary)
