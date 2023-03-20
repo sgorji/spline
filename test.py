@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from spline import Interpolator
 from time import time
 
+
 # performance
 results = {}
 for knots_count in [1000, 2000, 5000, 10000]:
@@ -22,6 +23,10 @@ for knots_count in results:
              list(results[knots_count].values()))
 plt.legend(
     [f'knots = {knots}' for knots in results], loc="lower right")
+plt.title("Performance", fontsize=25)
+plt.xlabel(r'Number of points', fontsize=15)
+plt.ylabel(r'Time (s)', fontsize=15)
+plt.savefig('performance.png', dpi=300, pad_inches=0.1)
 plt.show()
 
 
@@ -33,4 +38,8 @@ values = list(map(interpolator.interp, points))
 plt.figure(figsize=(15, 10))
 plt.scatter(points, values)
 plt.scatter(interpolator.knots[:, 0], interpolator.knots[:, 1], )
+plt.title("Correctness", fontsize=25)
+plt.xlabel(r'Number of points', fontsize=15)
+plt.ylabel(r'Time (s)', fontsize=15)
+plt.savefig('correctness.png', dpi=300, pad_inches=0.1)
 plt.show()
